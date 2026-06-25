@@ -1,1 +1,1 @@
-Today by a good pdf named git-test,I have learned git for the first time.
+Today  learn git for the first time.
