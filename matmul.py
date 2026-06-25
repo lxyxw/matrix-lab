@@ -12,3 +12,13 @@ def matmul_python(A, B):
                 s += A[i][t] * B[t][j]
             C[i][j] = s           
     return C
+def test_matmul_python():
+    A = [[1, 2], [3, 4]]
+    B = [[5, 6], [7, 8]]
+
+    C = matmul_python(A, B)
+
+    assert C == [[19, 22], [43, 50]]
+    print("Python matmul test passed")
+if __name__ == "__main__":
+    test_matmul_python()
