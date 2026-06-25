@@ -1,4 +1,6 @@
 import numpy as np
+import time
+import random
 def matmul_python(A, B):
     m = len(A)
     k = len(A[0])
@@ -25,6 +27,26 @@ def test_matmul():
     assert C_python == [[19, 22], [43, 50]]
     assert np.array_equal(C_numpy, np.array([[19, 22], [43, 50]]))
     print("All tests passed")
+
+
+def random_matrix(n):
+    return [[random.random() for _ in range(n)] for _ in range(n)]
+
+
+def benchmark():
+    sizes = [32, 64, 128]
+    print("size, python_time, numpy_time")
+    for n in sizes:
+        A = random_matrix(n)
+        B = random_matrix(n)
+        start = time.perf_counter()
+        matmul_python(A, B)
+        python_time = time.perf_counter() - start
+        start = time.perf_counter()
+        matmul_numpy(A, B)
+        numpy_time = time.perf_counter() - start
+        print(n, python_time, numpy_time)
+
 if __name__ == "__main__":
     test_matmul()
-
+    benchmark()
