@@ -1,3 +1,4 @@
+import numpy as np
 def matmul_python(A, B):
     m = len(A)
     k = len(A[0])
@@ -12,13 +13,18 @@ def matmul_python(A, B):
                 s += A[i][t] * B[t][j]
             C[i][j] = s           
     return C
-def test_matmul_python():
+def matmul_numpy(A, B):
+    A = np.array(A)
+    B = np.array(B)
+    return A @ B
+def test_matmul():
     A = [[1, 2], [3, 4]]
     B = [[5, 6], [7, 8]]
-
-    C = matmul_python(A, B)
-
-    assert C == [[19, 22], [43, 50]]
-    print("Python matmul test passed")
+    C_python = matmul_python(A, B)
+    C_numpy = matmul_numpy(A, B)
+    assert C_python == [[19, 22], [43, 50]]
+    assert np.array_equal(C_numpy, np.array([[19, 22], [43, 50]]))
+    print("All tests passed")
 if __name__ == "__main__":
-    test_matmul_python()
+    test_matmul()
+
